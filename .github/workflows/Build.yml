@@ -47,14 +47,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Maximize Build Space
-        uses: easimon/maximize-build-space@v5
-        with:
-          root-reserve-mb: 2048
-          temp-reserve-mb: 2048
-          remove-dotnet: 'true'
-          remove-android: 'true'
-          remove-haskell: 'true'
+     - name: Maximize Build Space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /usr/local/share/boost
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+          df -h
 
       - name: Checkout Repository
         uses: actions/checkout@v4
